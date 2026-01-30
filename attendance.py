@@ -1,7 +1,12 @@
 import json
 import os
+import csv
+from datetime import datetime, date
 
 FILE_NAME = "Data/attendance.json"
+
+
+
 
 
 def load_attendance():
@@ -28,6 +33,15 @@ def mark_attendance(e_id, date, status):
     status should be 'Present' or 'Absent'
     Returns: None
     """
+    try:
+        attendance_date = datetime.strptime(date, "%Y-%m-%d").date()
+        if attendance_date > datetime.today().date():
+            print("Cannot mark attendance for a future date.")
+            return
+    except ValueError:
+        print("Invalid date format. Use YYYY-MM-DD.")
+        return
+
     data = load_attendance()
 
     # Create employee record if not exists
@@ -52,6 +66,12 @@ def get_attendance_for_month(e_id, month):
     month format: 'YYYY-MM'
     Returns: integer
     """
+    try:
+        datetime.strptime(month, "%Y-%m")
+    except ValueError:
+        print("Invalid month format. Use YYYY-MM.")
+        return 0
+    
     data = load_attendance()
 
     if e_id not in data:
@@ -73,3 +93,19 @@ def get_all_attendance(e_id):
     """
     data = load_attendance()
     return data.get(e_id, {})
+
+if __name__ == "__main__":
+    # Test marking attendance
+    mark_attendance("E001", "2026-01-10", "Present")
+    mark_attendance("E001", "2026-01-11", "Absent")
+    mark_attendance("E001", "2026-01-12", "Present")
+
+    # Test future date (should fail)
+    mark_attendance("E001", "2099-01-01", "Present")
+
+    # Test invalid date
+    mark_attendance("E001", "2026-13-01", "Present")
+
+    # Test monthly count
+    count = get_attendance_for_month("E001", "2026-01")
+    print("Present days in 2026-01:", count)
