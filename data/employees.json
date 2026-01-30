@@ -8,5 +8,10 @@
         "id": "102",
         "name": "Prateek",
         "base_salary": 50000.0
+    },
+    {
+        "id": "E101",
+        "name": "Namrita",
+        "base_salary": 1230000.0
     }
 ]
