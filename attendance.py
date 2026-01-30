@@ -1,7 +1,7 @@
 import json
 import os
 
-FILE_NAME = "attendance.json"
+FILE_NAME = "Data/attendance.json"
 
 
 def load_attendance():

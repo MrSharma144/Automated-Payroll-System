@@ -1,0 +1,12 @@
+[
+    {
+        "id": "101",
+        "name": "Sandeep",
+        "base_salary": 99999.0
+    },
+    {
+        "id": "102",
+        "name": "Prateek",
+        "base_salary": 50000.0
+    }
+]

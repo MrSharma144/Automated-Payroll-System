@@ -1,7 +1,7 @@
 import json
 import os
 
-FILE_NAME = "employees.json"
+FILE_NAME = "Data/employees.json"
 
 
 def load_employees():
